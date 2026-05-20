@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ban Pov Type</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=Kantumruy+Pro:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="./src/style.css"/>
+</head>
+<body>
+
+  <!-- ══ PAGE 1: TYPING TEST ══ -->
+  <div class="page" id="page-typing">
+    <div class="inner">
+      <header>
+        <h1>Ban Pov Type</h1>
+        <span>60s test</span>
+         <button id="lang-toggle" class="lang-btn">🇰🇭 ខ្មែរ</button>
+      </header>
+      <div class="stats-bar">
+        <div class="stat-chip" id="time-chip">
+          <span class="label">⏱ Time</span>
+          <span class="value" id="time">60s</span>
+        </div>
+        <div class="stat-chip">
+          <span class="label">⚡ WPM</span>
+          <span class="value" id="live-wpm">0</span>
+        </div>
+        <div class="stat-chip">
+          <span class="label">✗ Mistakes</span>
+          <span class="value" id="mistakes">0</span>
+        </div>
+      </div>
+
+      <div id="quote" class="quote-box">
+        <span style="color:var(--muted)" class="loading">Loading quote</span>
+      </div>
+
+      <textarea id="quote-input" placeholder="Press Start Test, then type here…" disabled></textarea>
+
+      <div class="btn-row">
+        <button id="btn-next" class="btn-primary">Next</button>
+        <button id="stop-test" class="btn-secondary" disabled>Stop</button>
+        <button id="start-test" class="btn-primary">Start Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PAGE 2: RESULTS ══ -->
+  <div class="page" id="page-result">
+    <div class="inner">
+      <div class="result-header">
+        <span class="trophy" id="rating-badge">🏅</span>
+        <h2 id="rating-text">—</h2>
+        <p id="rating-sub">—</p>
+      </div>
+
+      <div class="result-grid">
+        <div class="result-card">
+          <div class="rc-label">WPM</div>
+          <div class="rc-value" id="r-wpm">—</div>
+          <div class="rc-unit">words / min</div>
+        </div>
+        <div class="result-card">
+          <div class="rc-label">Time</div>
+          <div class="rc-value" id="r-time">—</div>
+          <div class="rc-unit">seconds used</div>
+        </div>
+        <div class="result-card">
+          <div class="rc-label">Accuracy</div>
+          <div class="rc-value" id="r-accuracy">—</div>
+          <div class="rc-unit">percent</div>
+        </div>
+        <div class="result-card">
+          <div class="rc-label">Mistakes</div>
+          <div class="rc-value" id="r-mistakes">—</div>
+          <div class="rc-unit">errors</div>
+        </div>
+      </div>
+
+      <div class="rating-row">
+        <div class="rating-badge" id="rating-badge-2">🏅</div>
+        <div>
+          <div class="rating-text" id="rating-text-2">—</div>
+          <div class="rating-sub" id="rating-sub-2">—</div>
+        </div>
+      </div>
+
+      <div class="result-action-row">
+        <button id="btn-try-again" class="btn-secondary">↺ Try Again</button>
+        <button id="btn-next-quote" class="btn-primary">Next Quote →</button>
+      </div>
+    </div>
+  </div>
+
+<script src="./src/script.js"></script>
+</body>
+</html>
