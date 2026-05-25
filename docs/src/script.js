@@ -302,19 +302,25 @@ btnTryAgain.addEventListener("click", () => {
   resetState();
   userInput.value = "";
   renderQuote();
+    userInput.disabled = false; 
+      userInput.focus();
   // Don't auto-begin — let user start by typing or clicking
 });
 
 btnNext.addEventListener("click", () => {
   resetState();
   fetchQuote();
-  // Don't auto-begin — let user start by typing or clicking
+   userInput.value    = ""; 
+     userInput.disabled = false;
+      userInput.focus(); 
 });
 
 btnNextQuote.addEventListener("click", () => {
   resetState();
   fetchQuote();
-  // Don't auto-begin — let user start by typing or clicking
+  userInput.value    = "";   
+  userInput.disabled = false;
+   userInput.focus(); 
 });
 
 const endTest = () => {
