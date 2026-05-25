@@ -142,7 +142,20 @@ const applyLanguage = (lang) => {
 // ── Language toggle ──
 langToggle.addEventListener("click", () => {
   currentLang = currentLang === "en" ? "km" : "en";
+
   applyLanguage(currentLang);
+
+  if (currentLang === "en") {
+    langToggle.innerHTML = `
+      <span class="fi fi-gb" style="font-size:1.2rem;border-radius:3px;"></span>
+      <span>English</span>
+    `;
+  } else {
+    langToggle.innerHTML = `
+      <span class="fi fi-kh" style="font-size:1.2rem;border-radius:3px;"></span>
+      <span>ខ្មែរ</span>
+    `;
+  }
 });
 
 // ── Page transitions ──

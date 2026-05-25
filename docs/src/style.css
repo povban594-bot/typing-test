@@ -232,7 +232,22 @@ body.lang-km textarea {
       box-shadow: 0 0 0 3px rgba(232,255,71,0.08);
     }
     textarea:disabled { opacity: 0.4; cursor: not-allowed; }
-
+     .lang-btn {
+  margin-left: auto;
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.lang-btn:hover { border-color: var(--accent); color: var(--accent); }
     /* ── Buttons ── */
     .btn-row {
       display: flex;
