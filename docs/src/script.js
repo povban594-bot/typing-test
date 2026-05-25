@@ -41,7 +41,7 @@ const translations = {
   en: {
     badge:         "60s test",
     description:   "Type the text as fast and accurately as you can!",
-    placeholder:   "Press Start Test, then type here…",
+    placeholder:   "Click here and start typing…",
     btnStart:      "Start Test",
     btnStop:       "Stop",
     btnNext:       "Next",
@@ -72,7 +72,7 @@ const translations = {
   km: {
     badge:         "ការធ្វើតេស្ត ៦០វិនាទី",
     description:   "វាយអត្ថបទឱ្យលឿន ហើយត្រឹមត្រូវ!",
-    placeholder:   "ចុច ចាប់ផ្តើមតេស្ត រួចវាយអត្ថបទទីនេះ…",
+    placeholder:   "ចុចទីនេះ រួចវាយអត្ថបទ…",
     btnStart:      "ចាប់ផ្តើមតេស្ត",
     btnStop:       "ឈប់",
     btnNext:       "បន្ទាប់",
@@ -119,12 +119,12 @@ const applyLanguage = (lang) => {
   btnNextQuote.textContent  = t.btnNextQuote;
   langToggle.textContent    = t.toggleBtn;
 
-  // Stat chip labels — targeted by ID, never fails
+  // Stat chip labels
   document.getElementById("label-time").textContent     = t.labelTime;
   document.getElementById("label-wpm").textContent      = t.labelWpm;
   document.getElementById("label-mistakes").textContent = t.labelMistakes;
 
-  // Result card labels — targeted by ID
+  // Result card labels
   document.getElementById("rc-label-wpm").textContent      = t.rcWpm;
   document.getElementById("rc-label-time").textContent     = t.rcTime;
   document.getElementById("rc-label-accuracy").textContent = t.rcAccuracy;
@@ -180,7 +180,13 @@ const renderQuote = () => {
   updateProgress(0);
 };
 
+// ── Input handler — auto-starts on first keystroke ──
 userInput.addEventListener("input", () => {
+  // Auto-start when user begins typing
+  if (!started && userInput.value.length === 1) {
+    beginSession();
+  }
+
   if (!started) return;
 
   const typed = userInput.value.toLowerCase();
@@ -267,7 +273,6 @@ const tick = () => {
 
 const beginSession = () => {
   userInput.disabled = false;
-  userInput.value    = "";
   userInput.focus();
   started   = true;
   startTime = Date.now();
@@ -287,29 +292,34 @@ const stopTest = () => {
   timeChip.classList.remove("active", "warning");
 };
 
-startBtn.addEventListener("click", () => beginSession());
-stopBtn.addEventListener("click",  () => stopTest());
+startBtn.addEventListener("click", () => {
+  if (!started) beginSession();
+});
+
+stopBtn.addEventListener("click", () => stopTest());
 
 btnTryAgain.addEventListener("click", () => {
   resetState();
   userInput.value = "";
   renderQuote();
-  beginSession();
+  // Don't auto-begin — let user start by typing or clicking
 });
 
 btnNext.addEventListener("click", () => {
   resetState();
-  fetchQuote().then(() => beginSession());
+  fetchQuote();
+  // Don't auto-begin — let user start by typing or clicking
 });
 
 btnNextQuote.addEventListener("click", () => {
   resetState();
-  fetchQuote().then(() => beginSession());
+  fetchQuote();
+  // Don't auto-begin — let user start by typing or clicking
 });
 
 const endTest = () => {
   clearInterval(timer);
-  started           = false;
+  started            = false;
   userInput.disabled = true;
   startBtn.disabled  = false;
   stopBtn.disabled   = true;
@@ -318,7 +328,6 @@ const endTest = () => {
 };
 
 const showResults = () => {
-  const t       = translations[currentLang]; // ← was missing before, causing crash
   const timeUsed = DURATION - timeLeft;
   const typed    = userInput.value;
 
@@ -340,7 +349,6 @@ const showResults = () => {
   document.getElementById("r-accuracy").textContent = accuracy + "%";
   document.getElementById("r-mistakes").textContent = grandMistakes;
 
-  // Re-apply result card labels in current language
   applyLanguage(currentLang);
 
   const { emoji, label, sub } = getRating(wpm, accuracy, currentLang);
@@ -383,7 +391,7 @@ const resetState = () => {
 
 window.onload = () => {
   userInput.value    = "";
-  userInput.disabled = true;
+  userInput.disabled = false; // enabled so user can type to auto-start
   stopBtn.disabled   = true;
   applyLanguage(currentLang);
   fetchQuote();
