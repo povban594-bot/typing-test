@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ban Pov Type</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=Kantumruy+Pro:wght@400;600;700&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="./src/style.css"/>
+  <link rel="icon" type="image/png" href="./images/image.png">
+  <img src="./images/typing.png" class="circle-logo">
 </head>
 <body>
 
@@ -15,20 +16,23 @@
     <div class="inner">
       <header>
         <h1>Ban Pov Type</h1>
-        <span>60s test</span>
-         <button id="lang-toggle" class="lang-btn">🇰🇭 ខ្មែរ</button>
+        <span id="badge-text">60s test</span>
+        <button id="lang-toggle" class="lang-btn">🇰🇭 ខ្មែរ</button>
       </header>
+
+      <p class="description" id="description-text">Type the text as fast and accurately as you can!</p>
+
       <div class="stats-bar">
         <div class="stat-chip" id="time-chip">
-          <span class="label">⏱ Time</span>
+          <span class="label" id="label-time">⏱ Time</span>
           <span class="value" id="time">60s</span>
         </div>
         <div class="stat-chip">
-          <span class="label">⚡ WPM</span>
+          <span class="label" id="label-wpm">⚡ WPM</span>
           <span class="value" id="live-wpm">0</span>
         </div>
         <div class="stat-chip">
-          <span class="label">✗ Mistakes</span>
+          <span class="label" id="label-mistakes">✗ Mistakes</span>
           <span class="value" id="mistakes">0</span>
         </div>
       </div>
@@ -58,24 +62,24 @@
 
       <div class="result-grid">
         <div class="result-card">
-          <div class="rc-label">WPM</div>
+          <div class="rc-label" id="rc-label-wpm">WPM</div>
           <div class="rc-value" id="r-wpm">—</div>
-          <div class="rc-unit">words / min</div>
+          <div class="rc-unit" id="rc-unit-wpm">words / min</div>
         </div>
         <div class="result-card">
-          <div class="rc-label">Time</div>
+          <div class="rc-label" id="rc-label-time">Time</div>
           <div class="rc-value" id="r-time">—</div>
-          <div class="rc-unit">seconds used</div>
+          <div class="rc-unit" id="rc-unit-time">seconds used</div>
         </div>
         <div class="result-card">
-          <div class="rc-label">Accuracy</div>
+          <div class="rc-label" id="rc-label-accuracy">Accuracy</div>
           <div class="rc-value" id="r-accuracy">—</div>
-          <div class="rc-unit">percent</div>
+          <div class="rc-unit" id="rc-unit-accuracy">percent</div>
         </div>
         <div class="result-card">
-          <div class="rc-label">Mistakes</div>
+          <div class="rc-label" id="rc-label-mistakes">Mistakes</div>
           <div class="rc-value" id="r-mistakes">—</div>
-          <div class="rc-unit">errors</div>
+          <div class="rc-unit" id="rc-unit-errors">errors</div>
         </div>
       </div>
 
@@ -94,6 +98,6 @@
     </div>
   </div>
 
-<script src="./src/script.js"></script>
+  <script src="./src/script.js"></script>
 </body>
 </html>
