@@ -58,7 +58,6 @@ const translations = {
     rcUnitTime:    "seconds used",
     rcUnitAccuracy:"percent",
     rcUnitErrors:  "errors",
-    toggleBtn:     "🇰🇭 ខ្មែរ",
     loading:       "Loading quote",
     ratings: [
       { minWpm: 80, minAcc: 95, emoji: "🏆", label: "Elite Typist",  sub: "Top 1% speed with near-perfect accuracy." },
@@ -89,7 +88,6 @@ const translations = {
     rcUnitTime:    "វិនាទីប្រើ",
     rcUnitAccuracy:"ភាគរយ",
     rcUnitErrors:  "កំហុស",
-    toggleBtn:     "🇺🇸 English",
     loading:       "កំពុងផ្ទុកសម្រង់",
     ratings: [
       { minWpm: 80, minAcc: 95, emoji: "🏆", label: "វាយអក្សរកំពូល",   sub: "លឿន និងត្រឹមត្រូវ — កំពូល ១%។" },
@@ -102,22 +100,41 @@ const translations = {
   },
 };
 
+// ── Set lang toggle button UI (flag + label) ──
+const setLangToggleUI = (lang) => {
+  if (lang === "en") {
+  
+       langToggle.innerHTML = `
+      <span class="fi fi-gb" style="font-size:1.2rem;border-radius:3px;"></span>
+      <span>English</span>
+    `;
+  } else {
+   
+     langToggle.innerHTML = `
+      <span class="fi fi-kh" style="font-size:1.2rem;border-radius:3px;"></span>
+      <span>ខ្មែរ</span>
+    `;
+  }
+};
+
 // ── Apply language to UI ──
 const applyLanguage = (lang) => {
   const t = translations[lang];
 
   // Header
-  document.getElementById("badge-text").textContent      = t.badge;
+  document.getElementById("badge-text").textContent       = t.badge;
   document.getElementById("description-text").textContent = t.description;
-  userInput.placeholder                                   = t.placeholder;
+  userInput.placeholder                                    = t.placeholder;
 
   // Buttons
-  startBtn.textContent      = t.btnStart;
-  stopBtn.textContent       = t.btnStop;
-  btnNext.textContent       = t.btnNext;
-  btnTryAgain.textContent   = t.btnTryAgain;
-  btnNextQuote.textContent  = t.btnNextQuote;
-  langToggle.textContent    = t.toggleBtn;
+  startBtn.textContent     = t.btnStart;
+  stopBtn.textContent      = t.btnStop;
+  btnNext.textContent      = t.btnNext;
+  btnTryAgain.textContent  = t.btnTryAgain;
+  btnNextQuote.textContent = t.btnNextQuote;
+
+  // Lang toggle button — use innerHTML to preserve flag spans
+  setLangToggleUI(lang);
 
   // Stat chip labels
   document.getElementById("label-time").textContent     = t.labelTime;
@@ -142,20 +159,7 @@ const applyLanguage = (lang) => {
 // ── Language toggle ──
 langToggle.addEventListener("click", () => {
   currentLang = currentLang === "en" ? "km" : "en";
-
   applyLanguage(currentLang);
-
-  if (currentLang === "en") {
-    langToggle.innerHTML = `
-      <span class="fi fi-gb" style="font-size:1.2rem;border-radius:3px;"></span>
-      <span>English</span>
-    `;
-  } else {
-    langToggle.innerHTML = `
-      <span class="fi fi-kh" style="font-size:1.2rem;border-radius:3px;"></span>
-      <span>ខ្មែរ</span>
-    `;
-  }
 });
 
 // ── Page transitions ──
@@ -195,7 +199,6 @@ const renderQuote = () => {
 
 // ── Input handler — auto-starts on first keystroke ──
 userInput.addEventListener("input", () => {
-  // Auto-start when user begins typing
   if (!started && userInput.value.length === 1) {
     beginSession();
   }
@@ -317,7 +320,7 @@ btnTryAgain.addEventListener("click", () => {
   renderQuote();
   userInput.disabled = false;
   userInput.focus();
-  showTypingPage(); 
+  showTypingPage();
 });
 
 btnNext.addEventListener("click", () => {
@@ -326,7 +329,7 @@ btnNext.addEventListener("click", () => {
   userInput.value = "";
   userInput.disabled = false;
   userInput.focus();
-  showTypingPage(); 
+  showTypingPage();
 });
 
 btnNextQuote.addEventListener("click", () => {
@@ -335,7 +338,7 @@ btnNextQuote.addEventListener("click", () => {
   userInput.value = "";
   userInput.disabled = false;
   userInput.focus();
-  showTypingPage(); 
+  showTypingPage();
 });
 
 const endTest = () => {
@@ -412,7 +415,7 @@ const resetState = () => {
 
 window.onload = () => {
   userInput.value    = "";
-  userInput.disabled = false; // enabled so user can type to auto-start
+  userInput.disabled = false;
   stopBtn.disabled   = true;
   applyLanguage(currentLang);
   fetchQuote();
