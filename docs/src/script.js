@@ -70,7 +70,7 @@ const translations = {
   },
   km: {
     badge:         "ការធ្វើតេស្ត ៦០វិនាទី",
-    description:   "វាយtypingដូចមាន់ចឺងស្រូវរៀនសុតតែខាងIT hot mes!",
+    description:   " វាយtypingដូចមាន់ចឺកស្រូវរៀនសុតតែខាងIT hot mes!",
     placeholder:   "ចុចទីនេះ រួចវាយអត្ថបទ…",
     btnStart:      "ចាប់ផ្តើមតេស្ត",
     btnStop:       "ឈប់",
